@@ -33,7 +33,7 @@ import (
 	"time"
 
 	"github.com/ScaleFT/sshkeys"
-	"github.com/go-project-pkg/expandhost"
+	"github.com/futuretea/go-expand"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/agent"
 	"golang.org/x/term"
@@ -265,7 +265,7 @@ func (t *Task) HandleOutput() {
 
 func (t *Task) getAllHosts() ([]string, error) {
 	var hosts []string
-
+	expander := expand.NewExpander()
 	if len(t.hosts) != 0 {
 		for _, hostOrPattern := range t.hosts {
 			hostOrPattern = strings.TrimSpace(hostOrPattern)
@@ -274,7 +274,7 @@ func (t *Task) getAllHosts() ([]string, error) {
 				continue
 			}
 
-			hostList, err := expandhost.PatternToHosts(hostOrPattern)
+			hostList, err := expander.Expand(hostOrPattern)
 			if err != nil {
 				return nil, fmt.Errorf("invalid host pattern: %s", err)
 			}
@@ -297,7 +297,7 @@ func (t *Task) getAllHosts() ([]string, error) {
 				continue
 			}
 
-			hostList, err := expandhost.PatternToHosts(hostOrPattern)
+			hostList, err := expander.Expand(hostOrPattern)
 			if err != nil {
 				return nil, fmt.Errorf("invalid host pattern: %s", err)
 			}

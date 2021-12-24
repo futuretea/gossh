@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/ScaleFT/sshkeys v0.0.0-20200327173127-6142f742bca5
 	github.com/fatih/color v1.13.0
-	github.com/go-project-pkg/expandhost v0.1.1
+	github.com/futuretea/go-expand v0.0.0-20211224085615-3cb6612f27c9
 	github.com/go-project-pkg/version v0.0.0-20211203112436-8252efa62491
 	github.com/pkg/sftp v1.10.1
 	github.com/spf13/cobra v1.2.1
